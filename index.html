@@ -5,95 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title>Alchemical Tilt Prototype</title>
 <style>
-:root{color-scheme:dark;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
-*{box-sizing:border-box}
-body{margin:0;background:#151515;color:#eee;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:16px}
-.app{width:min(940px,100%);display:flex;flex-direction:column;gap:10px;align-items:center}
-h1{font-size:22px;margin:0;letter-spacing:.08em}
-.sub{font-size:14px;color:#bbb;text-align:center}
-.info{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;font-size:15px}
-.stage{width:min(680px,90vw);aspect-ratio:1;display:grid;place-items:center;overflow:visible;touch-action:none}
-.trayWrap{width:78%;height:78%;display:grid;place-items:center;transition:transform .28s ease-in-out;transform-origin:center}
-.tray{position:relative;width:100%;height:100%;background:#2b2b2b;border-radius:12px;box-shadow:0 12px 40px #0008;overflow:visible}
-.edge{position:absolute;z-index:4;border-radius:8px}
-.edge.top{left:0;top:-14px;width:100%;height:14px;background:#4da3ff}
-.edge.right{right:-14px;top:0;width:14px;height:100%;background:#ff665c}
-.edge.bottom{left:0;bottom:-14px;width:100%;height:14px;background:#55d17a}
-.edge.left{left:-14px;top:0;width:14px;height:100%;background:#ffd75a}
-.grid{position:absolute;inset:0;display:grid}
-.cell{border:1px solid #3d3d3d;position:relative}
-.orb{position:absolute;border-radius:50%;width:78%;height:78%;left:11%;top:11%;border:3px solid #111;box-shadow:inset -10px -12px 20px #0006,0 2px 5px #0007;transition:transform .16s ease,filter .2s ease}
-.orb:after{content:"";position:absolute;width:20%;height:20%;border-radius:50%;left:20%;top:18%;background:#ffffff55}
-.orb.G{background:radial-gradient(circle at 35% 30%,#8cff9b,#23b982 55%,#0e6c52)}
-.orb.P{background:radial-gradient(circle at 35% 30%,#cf7cff,#7d4cff 55%,#3d2a9d)}
-.orb.B{background:radial-gradient(circle at 35% 30%,#8fd4ff,#388cff 55%,#1f4eaa)}
-.orb.R{background:radial-gradient(circle at 35% 30%,#ff9f8e,#ff5d4f 55%,#a52c25)}
-.orb.Y{background:radial-gradient(circle at 35% 30%,#fff3a3,#f4c843 55%,#a17816)}
-.orb.matched{filter:drop-shadow(0 0 8px #fff8) brightness(1.25)}
-.controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-button{background:#2b2b2b;color:#eee;border:1px solid #555;border-radius:9px;padding:10px 16px;font-size:15px;cursor:pointer}
-button:hover{background:#373737}
-.status{font-size:17px;text-align:center;min-height:24px}
-.solver{font-size:13px;color:#999;text-align:center}
-.keypad{display:grid;grid-template-columns:48px 48px 48px;grid-template-rows:42px 42px;gap:5px;margin-top:2px}
-.keypad button{padding:0;font-size:20px}
-.keypad .up{grid-column:2;grid-row:1}.keypad .left{grid-column:1;grid-row:2}.keypad .down{grid-column:2;grid-row:2}.keypad .right{grid-column:3;grid-row:2}
-.legend{font-size:12px;color:#aaa;text-align:center;max-width:700px}
-@media(max-width:600px){h1{font-size:18px}.stage{width:94vw}.trayWrap{width:82%;height:82%}}
+:root{color-scheme:dark;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:#151515;color:#eee;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:16px}.app{width:min(940px,100%);display:flex;flex-direction:column;gap:10px;align-items:center}h1{font-size:22px;margin:0;letter-spacing:.08em}.sub{font-size:14px;color:#bbb;text-align:center}.info{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;font-size:15px}.stage{width:min(680px,90vw);aspect-ratio:1;display:grid;place-items:center;overflow:visible;touch-action:none}.trayWrap{width:78%;height:78%;display:grid;place-items:center;transition:transform .28s ease-in-out;transform-origin:center}.tray{position:relative;width:100%;height:100%;background:#2b2b2b;border-radius:12px;box-shadow:0 12px 40px #0008;overflow:visible}.edge{position:absolute;z-index:4;border-radius:8px}.edge.top{left:0;top:-14px;width:100%;height:14px;background:#4da3ff}.edge.right{right:-14px;top:0;width:14px;height:100%;background:#ff665c}.edge.bottom{left:0;bottom:-14px;width:100%;height:14px;background:#55d17a}.edge.left{left:-14px;top:0;width:14px;height:100%;background:#ffd75a}.grid{position:absolute;inset:0;display:grid}.cell{border:1px solid #3d3d3d;position:relative}.orb{position:absolute;border-radius:50%;width:78%;height:78%;left:11%;top:11%;border:3px solid #111;box-shadow:inset -10px -12px 20px #0006,0 2px 5px #0007;transition:filter .2s ease}.orb:after{content:"";position:absolute;width:20%;height:20%;border-radius:50%;left:20%;top:18%;background:#ffffff55}.orb.G{background:radial-gradient(circle at 35% 30%,#8cff9b,#23b982 55%,#0e6c52)}.orb.P{background:radial-gradient(circle at 35% 30%,#cf7cff,#7d4cff 55%,#3d2a9d)}.orb.matched{filter:drop-shadow(0 0 8px #fff8) brightness(1.25)}button{background:#2b2b2b;color:#eee;border:1px solid #555;border-radius:9px;padding:10px 16px;font-size:15px;cursor:pointer}.status{font-size:17px;text-align:center;min-height:24px}.solver{font-size:13px;color:#999;text-align:center}.keypad{display:grid;grid-template-columns:48px 48px 48px;grid-template-rows:42px 42px;gap:5px}.keypad button{padding:0;font-size:20px}.keypad .up{grid-column:2;grid-row:1}.keypad .left{grid-column:1;grid-row:2}.keypad .down{grid-column:2;grid-row:2}.keypad .right{grid-column:3;grid-row:2}.controls{display:flex;gap:10px}.legend{font-size:12px;color:#aaa;text-align:center;max-width:700px}@media(max-width:600px){h1{font-size:18px}.stage{width:94vw}.trayWrap{width:82%;height:82%}}
 </style>
 </head>
 <body>
-<div class="app">
-  <h1>ALCHEMICAL TILT — UGLY PROTOTYPE</h1>
-  <div class="sub">Drag/swipe across the tray or use arrow keys. Each gesture rotates the physical tray relative to its current orientation, then the reagents settle under gravity.</div>
-  <div class="info"><div id="moves">Moves: 0</div><div id="formula"></div></div>
-  <div class="stage" id="stage">
-    <div class="trayWrap" id="trayWrap">
-      <div class="tray" id="tray">
-        <div class="edge top"></div><div class="edge right"></div><div class="edge bottom"></div><div class="edge left"></div>
-        <div class="grid" id="grid"></div>
-      </div>
-    </div>
-  </div>
-  <div class="status" id="status"></div>
-  <div class="solver" id="solver"></div>
-  <div class="keypad"><button class="up" data-dir="U">↑</button><button class="left" data-dir="L">←</button><button class="down" data-dir="D">↓</button><button class="right" data-dir="R">→</button></div>
-  <div class="controls"><button id="undo">Undo</button><button id="restart">Restart</button></div>
-  <div class="legend">Prototype orientation markers: top blue • right red • bottom green • left yellow. Reagents do not disappear. The formula is complete only when every required straight-line group exists simultaneously.</div>
-</div>
+<div class="app"><h1>ALCHEMICAL TILT — UGLY PROTOTYPE</h1><div class="sub">Drag/swipe across the tray or use arrow keys. Repeated directions are allowed; the tray can keep rotating as many times as you want.</div><div class="info"><div id="moves">Moves: 0</div><div id="formula"></div></div><div class="stage" id="stage"><div class="trayWrap" id="trayWrap"><div class="tray"><div class="edge top"></div><div class="edge right"></div><div class="edge bottom"></div><div class="edge left"></div><div class="grid" id="grid"></div></div></div></div><div class="status" id="status"></div><div class="solver" id="solver"></div><div class="keypad"><button class="up" data-dir="U">↑</button><button class="left" data-dir="L">←</button><button class="down" data-dir="D">↓</button><button class="right" data-dir="R">→</button></div><div class="controls"><button id="undo">Undo</button><button id="restart">Restart</button></div><div class="legend">Every reagent in this tutorial is required. Nothing is extra.</div></div>
 <script>
-const EMPTY='.';
-const level={rows:6,cols:6,start:['......','......','......','P.....','PPG...','GGPG..'],requirements:[{color:'G',length:3,count:1},{color:'P',length:3,count:1}],solverDepth:8};
-const colorNames={G:'Verdant',P:'Aether',B:'Frost',R:'Ember',Y:'Citrine'};
-const turnSteps={D:0,R:1,U:2,L:-1};
-let board=parseRows(level.start),initial=clone(board),history=[],moves=0,locked=false,quarterTurns=0;
-const grid=document.getElementById('grid'),trayWrap=document.getElementById('trayWrap'),stage=document.getElementById('stage');
-grid.style.gridTemplateColumns=`repeat(${level.cols},1fr)`;grid.style.gridTemplateRows=`repeat(${level.rows},1fr)`;
-for(let i=0;i<level.rows*level.cols;i++){const c=document.createElement('div');c.className='cell';grid.appendChild(c)}
-function parseRows(rows){return rows.map(r=>r.split(''))}
-function clone(b){return b.map(r=>r.slice())}
-function key(b){return b.map(r=>r.join('')).join('|')}
-function tilt(b,d){const out=clone(b),rows=out.length,cols=out[0].length;if(d==='L'||d==='R'){for(let r=0;r<rows;r++){const vals=out[r].filter(v=>v!==EMPTY);out[r].fill(EMPTY);if(d==='L')vals.forEach((v,i)=>out[r][i]=v);else vals.forEach((v,i)=>out[r][cols-vals.length+i]=v)}}else{for(let c=0;c<cols;c++){const vals=[];for(let r=0;r<rows;r++)if(out[r][c]!==EMPTY)vals.push(out[r][c]);for(let r=0;r<rows;r++)out[r][c]=EMPTY;if(d==='U')vals.forEach((v,i)=>out[i][c]=v);else vals.forEach((v,i)=>out[rows-vals.length+i][c]=v)}}return out}
-function runs(b){const found=[],rows=b.length,cols=b[0].length;for(let r=0;r<rows;r++){let c=0;while(c<cols){const col=b[r][c];if(col===EMPTY){c++;continue}let e=c+1;while(e<cols&&b[r][e]===col)e++;found.push({color:col,length:e-c,axis:'H',row:r,col:c});c=e}}for(let c=0;c<cols;c++){let r=0;while(r<rows){const col=b[r][c];if(col===EMPTY){r++;continue}let e=r+1;while(e<rows&&b[e][c]===col)e++;found.push({color:col,length:e-r,axis:'V',row:r,col:c});r=e}}return found}
-function requirementStatus(b){const rs=runs(b);return level.requirements.map(req=>{let matched=0;for(const run of rs)if(run.color===req.color&&run.length>=req.length)matched++;return {...req,matched:Math.min(matched,req.count),complete:matched>=req.count}})}
-function isGoal(b){return requirementStatus(b).every(x=>x.complete)}
-function matchedCells(b){const set=new Set(),rs=runs(b),reqs=level.requirements;for(const run of rs){if(!reqs.some(q=>q.color===run.color&&run.length>=q.length))continue;for(let i=0;i<run.length;i++){const r=run.row+(run.axis==='V'?i:0),c=run.col+(run.axis==='H'?i:0);set.add(`${r},${c}`)}}return set}
-function render(){const cells=[...grid.children],matched=matchedCells(board);cells.forEach((cell,i)=>{cell.innerHTML='';const r=Math.floor(i/level.cols),c=i%level.cols,v=board[r][c];if(v!==EMPTY){const o=document.createElement('div');o.className=`orb ${v}${matched.has(`${r},${c}`)?' matched':''}`;cell.appendChild(o)}});document.getElementById('moves').textContent=`Moves: ${moves}`;const st=requirementStatus(board);document.getElementById('formula').textContent='Formula: '+st.map(x=>`${x.complete?'✓':'○'} ${colorNames[x.color]} ×${x.length}`).join('   ');document.getElementById('status').textContent=isGoal(board)?'FORMULA STABLE — prototype puzzle solved.':'Align every required reagent group at the same time.'}
-function screenToLocal(direction,orientationSteps){const q=((orientationSteps%4)+4)%4;const maps=[{U:'U',D:'D',L:'L',R:'R'},{U:'L',D:'R',L:'D',R:'U'},{U:'D',D:'U',L:'R',R:'L'},{U:'R',D:'L',L:'U',R:'D'}];return maps[q][direction]}
-function applyCommand(b,orientationSteps,direction){const localDirection=screenToLocal(direction,orientationSteps);const nextBoard=tilt(b,localDirection);const nextOrientation=((orientationSteps+turnSteps[direction])%4+4)%4;return {b:nextBoard,q:nextOrientation,localDirection}}
-function stateKey(b,q){return key(b)+'@'+(((q%4)+4)%4)}
-function shortest(start,maxDepth){if(isGoal(start))return {solved:true,moves:[],states:1};const q=[{b:clone(start),o:0,m:[]}],seen=new Set([stateKey(start,0)]);let head=0;while(head<q.length){const item=q[head++];if(item.m.length>=maxDepth)continue;for(const a of ['U','D','L','R']){const st=applyCommand(item.b,item.o,a),k=stateKey(st.b,st.q);if(seen.has(k))continue;seen.add(k);const nm=item.m.concat(a);if(isGoal(st.b))return {solved:true,moves:nm,states:seen.size};q.push({b:st.b,o:st.q,m:nm})}}return {solved:false,moves:[],states:seen.size}}
-const sol=shortest(board,level.solverDepth);document.getElementById('solver').textContent=sol.solved?`Solver verified • shortest path: ${sol.moves.length} moves • ${sol.moves.join(' → ')} • states explored: ${sol.states}`:`No solution found within depth ${level.solverDepth}`;
-function angleForQuarter(q){return q*90}
-async function move(action){if(locked||isGoal(board))return;locked=true;const previous={b:clone(board),moves,quarterTurns};const st=applyCommand(board,quarterTurns,action);quarterTurns=st.q;trayWrap.style.transform=`rotate(${angleForQuarter(quarterTurns)}deg)`;await new Promise(r=>setTimeout(r,290));const boardChanged=key(st.b)!==key(board);const orientationChanged=quarterTurns!==previous.quarterTurns;if(boardChanged||orientationChanged){history.push(previous);board=st.b;moves++;render()}else{document.getElementById('status').textContent='No rotation or reagent movement — move not counted.'}locked=false}
-function undo(){if(locked||history.length===0)return;const p=history.pop();board=clone(p.b);moves=p.moves;quarterTurns=p.quarterTurns;trayWrap.style.transition='none';trayWrap.style.transform=`rotate(${angleForQuarter(quarterTurns)}deg)`;requestAnimationFrame(()=>trayWrap.style.transition='transform .28s ease-in-out');render()}
-function restart(){if(locked)return;board=clone(initial);history=[];moves=0;quarterTurns=0;trayWrap.style.transform='rotate(0deg)';render()}
-window.addEventListener('keydown',e=>{const m={ArrowUp:'U',ArrowDown:'D',ArrowLeft:'L',ArrowRight:'R'}[e.key];if(m){e.preventDefault();move(m)}});
-document.querySelectorAll('[data-dir]').forEach(b=>b.onclick=()=>move(b.dataset.dir));document.getElementById('undo').onclick=undo;document.getElementById('restart').onclick=restart;
-let start=null;
-function beginDrag(e){e.preventDefault();start={x:e.clientX,y:e.clientY,id:e.pointerId};try{stage.setPointerCapture(e.pointerId)}catch(_){}}
-function endDrag(e){if(!start||e.pointerId!==start.id)return;e.preventDefault();const dx=e.clientX-start.x,dy=e.clientY-start.y;start=null;try{stage.releasePointerCapture(e.pointerId)}catch(_){}if(Math.hypot(dx,dy)<20)return;move(Math.abs(dx)>Math.abs(dy)?(dx>0?'R':'L'):(dy>0?'D':'U'))}
-stage.addEventListener('pointerdown',beginDrag,{passive:false});stage.addEventListener('pointerup',endDrag,{passive:false});stage.addEventListener('pointercancel',()=>{start=null});render();
-</script>
-</body>
-</html>
+const E='.',level={rows:6,cols:6,start:['....P.','..PP..','.....G','G...G.','....G.','....P.'],requirements:[{color:'G',length:4,count:1},{color:'P',length:4,count:1}],solverDepth:8};
+const names={G:'Verdant',P:'Aether'},turn={D:0,R:1,U:2,L:-1};let board=level.start.map(r=>r.split('')),initial=clone(board),history=[],moves=0,locked=false,o=0,visualTurns=0;const grid=document.getElementById('grid'),wrap=document.getElementById('trayWrap'),stage=document.getElementById('stage');grid.style.gridTemplateColumns=`repeat(${level.cols},1fr)`;grid.style.gridTemplateRows=`repeat(${level.rows},1fr)`;for(let i=0;i<36;i++){let c=document.createElement('div');c.className='cell';grid.appendChild(c)}
+function clone(b){return b.map(r=>r.slice())}function key(b){return b.map(r=>r.join('')).join('|')}
+function tilt(b,d){let x=clone(b),R=x.length,C=x[0].length;if(d==='L'||d==='R'){for(let r=0;r<R;r++){let v=x[r].filter(z=>z!==E);x[r].fill(E);if(d==='L')v.forEach((z,i)=>x[r][i]=z);else v.forEach((z,i)=>x[r][C-v.length+i]=z)}}else{for(let c=0;c<C;c++){let v=[];for(let r=0;r<R;r++)if(x[r][c]!==E)v.push(x[r][c]);for(let r=0;r<R;r++)x[r][c]=E;if(d==='U')v.forEach((z,i)=>x[i][c]=z);else v.forEach((z,i)=>x[R-v.length+i][c]=z)}}return x}
+const maps=[{U:'U',D:'D',L:'L',R:'R'},{U:'L',D:'R',L:'D',R:'U'},{U:'D',D:'U',L:'R',R:'L'},{U:'R',D:'L',L:'U',R:'D'}];function apply(b,q,a){let ld=maps[((q%4)+4)%4][a];return {b:tilt(b,ld),q:((q+turn[a])%4+4)%4}}
+function runs(b){let f=[],R=b.length,C=b[0].length;for(let r=0;r<R;r++){let c=0;while(c<C){let z=b[r][c];if(z===E){c++;continue}let e=c+1;while(e<C&&b[r][e]===z)e++;f.push({color:z,length:e-c,axis:'H',row:r,col:c});c=e}}for(let c=0;c<C;c++){let r=0;while(r<R){let z=b[r][c];if(z===E){r++;continue}let e=r+1;while(e<R&&b[e][c]===z)e++;f.push({color:z,length:e-r,axis:'V',row:r,col:c});r=e}}return f}
+function status(b){let rs=runs(b);return level.requirements.map(q=>{let m=rs.filter(x=>x.color===q.color&&x.length>=q.length).length;return {...q,complete:m>=q.count}})}function goal(b){return status(b).every(x=>x.complete)}
+function matched(b){let s=new Set;for(let run of runs(b)){if(!level.requirements.some(q=>q.color===run.color&&run.length>=q.length))continue;for(let i=0;i<run.length;i++)s.add(`${run.row+(run.axis==='V'?i:0)},${run.col+(run.axis==='H'?i:0)}`)}return s}
+function render(){let m=matched(board),cells=[...grid.children];cells.forEach((cell,i)=>{cell.innerHTML='';let r=Math.floor(i/6),c=i%6,z=board[r][c];if(z!==E){let d=document.createElement('div');d.className=`orb ${z}${m.has(`${r},${c}`)?' matched':''}`;cell.appendChild(d)}});document.getElementById('moves').textContent=`Moves: ${moves}`;document.getElementById('formula').textContent='Formula: '+status(board).map(x=>`${x.complete?'✓':'○'} ${names[x.color]} ×${x.length}`).join('   ');document.getElementById('status').textContent=goal(board)?'FORMULA STABLE — every reagent is aligned. Keep rotating if you want to test movement.':'Align every reagent into its required formula group.'}
+function stateKey(b,q){return key(b)+'@'+q}function shortest(start,max){let Q=[{b:clone(start),q:0,m:[]}],seen=new Set([stateKey(start,0)]),h=0;while(h<Q.length){let x=Q[h++];if(goal(x.b))return x.m;if(x.m.length>=max)continue;for(let a of ['U','D','L','R']){let n=apply(x.b,x.q,a),k=stateKey(n.b,n.q);if(seen.has(k))continue;seen.add(k);Q.push({b:n.b,q:n.q,m:x.m.concat(a)})}}return null}let sol=shortest(board,8);document.getElementById('solver').textContent=sol?`Solver verified • shortest path: ${sol.length} moves • ${sol.join(' → ')}`:'No solution found';
+async function move(a){if(locked)return;locked=true;let prev={b:clone(board),moves,o,visualTurns};let n=apply(board,o,a);if(a==='R')visualTurns++;else if(a==='L')visualTurns--;else if(a==='U')visualTurns+=2;wrap.style.transform=`rotate(${visualTurns*90}deg)`;await new Promise(r=>setTimeout(r,290));history.push(prev);board=n.b;o=n.q;moves++;render();locked=false}
+function undo(){if(locked||!history.length)return;let p=history.pop();board=clone(p.b);moves=p.moves;o=p.o;visualTurns=p.visualTurns;wrap.style.transition='none';wrap.style.transform=`rotate(${visualTurns*90}deg)`;requestAnimationFrame(()=>wrap.style.transition='transform .28s ease-in-out');render()}function restart(){if(locked)return;board=clone(initial);history=[];moves=0;o=0;visualTurns=0;wrap.style.transform='rotate(0deg)';render()}
+window.addEventListener('keydown',e=>{let a={ArrowUp:'U',ArrowDown:'D',ArrowLeft:'L',ArrowRight:'R'}[e.key];if(a){e.preventDefault();move(a)}});document.querySelectorAll('[data-dir]').forEach(b=>b.onclick=()=>move(b.dataset.dir));document.getElementById('undo').onclick=undo;document.getElementById('restart').onclick=restart;let start=null;stage.addEventListener('pointerdown',e=>{e.preventDefault();start={x:e.clientX,y:e.clientY,id:e.pointerId};try{stage.setPointerCapture(e.pointerId)}catch(_){}},{passive:false});stage.addEventListener('pointerup',e=>{if(!start||e.pointerId!==start.id)return;e.preventDefault();let dx=e.clientX-start.x,dy=e.clientY-start.y;start=null;if(Math.hypot(dx,dy)<20)return;move(Math.abs(dx)>Math.abs(dy)?(dx>0?'R':'L'):(dy>0?'D':'U'))},{passive:false});stage.addEventListener('pointercancel',()=>start=null);render();
+</script></body></html>
