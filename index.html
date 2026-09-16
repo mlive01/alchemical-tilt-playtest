@@ -33,7 +33,7 @@
 <script>
 const E='.',N=7,grav=['D','R','U','L'];
 const levels=[
- {name:'1. First Pairing',lesson:'One adjacent swap clears the whole board.',max:1,start:['.......','.......','.......','.......','.GPG...','.P.....','.P..G..'],solution:'Swap r5c2 ↔ r5c3'},
+ {name:'1. First Pairing',lesson:'Swap the two center spheres vertically. That creates GGG and PPP at the same time.',max:1,start:['.......','.......','.......','.......','.......','.GPG...','.PGP...'],solution:'Swap r6c3 ↔ r7c3'},
  {name:'2. Turn the Vessel',lesson:'No swap is needed. Rotate the chamber and let gravity do the work.',max:1,start:['.......','.......','.......','.......','...PG..','..PG...','.P..G..'],solution:'Rotate LEFT 90°'},
  {name:'3. Set, Then Turn',lesson:'Make one setup swap, then rotate the chamber.',max:2,start:['.......','.......','.......','.......','.......','.P.GP..','.GGP...'],solution:'Swap r6c4 ↔ r7c4 → Rotate LEFT 90°'},
  {name:'4. Open the Space',lesson:'Clear one group, use the opened space, then rotate to finish.',max:3,start:['.......','.......','.......','.......','..BB...','.BPGP..','.G.PG..'],solution:'Swap r5c4 ↔ r6c4 → Swap r6c5 ↔ r7c5 → Rotate LEFT 90°'},
